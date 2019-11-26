@@ -8,7 +8,6 @@ import ProfileScreen from './src/screens/ProfileScreen';
 import MessageScreen from './src/screens/MessageScreen';
 import SideBar from './src/components/SideBar';
 import Icon from 'react-native-vector-icons/dist/Feather';
-import ScanIDScreen from './src/screens/ScanIDScreen';
 
 const DrawerNavigator = createDrawerNavigator(
   {
@@ -20,7 +19,7 @@ const DrawerNavigator = createDrawerNavigator(
       }
     },
     Scan: {
-      screen: ScanIDScreen,
+      screen: ProfileScreen,
       navigationOptions: {
         title: 'Scan',
         drawerIcon: ({ tintColor }) => <Icon name="camera" size={16} color={tintColor} />
@@ -43,8 +42,8 @@ const DrawerNavigator = createDrawerNavigator(
     CreditInquiry: {
       screen: ProfileScreen,
       navigationOptions: {
-        title: 'Credit Inquiry',
-        drawerIcon: ({ tintColor }) => <Icon name="tag" size={16} color={tintColor} />
+        title: 'Profile',
+        drawerIcon: ({ tintColor }) => <Icon name="user" size={16} color={tintColor} />
       }
     },
     Message: {

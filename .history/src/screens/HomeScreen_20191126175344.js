@@ -11,9 +11,9 @@ export default class HomeScreen extends Component {
                 <SafeAreaView
                     style={{ flex: 1 }}>
                     <TouchableOpacity style={{ alignItems: 'flex-start', margin: 16 }}>
-                        <Icon name="bars" size={25} color='#1c5dc9'
+                        <Icon name="bars" size={24} color='#1c5dc9'
                             onPress={this.props.navigation.openDrawer} />
-                        <TextInput placeholder="Search Here" style={styles.search} underlineColorAndroid='transparent' placeholderTextColor = "#1c5dc987" />
+                        <TextInput placeholder="Search Here" style={styles.search}  color='#1c5dc9' />
                         <Icon style={styles.searchIcon} name='search' size={22} color='#1c5dc9' />
                     </TouchableOpacity>
                     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
@@ -42,7 +42,6 @@ const styles = StyleSheet.create({
         height: 40,
         paddingLeft: 45,
         paddingRight: 15,
-        
     },
     searchIcon: {
         marginTop: -33,

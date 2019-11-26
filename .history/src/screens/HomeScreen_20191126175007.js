@@ -10,11 +10,17 @@ export default class HomeScreen extends Component {
                 <StatusBar backgroundColor="white" barStyle="dark-content" />
                 <SafeAreaView
                     style={{ flex: 1 }}>
-                    <TouchableOpacity style={{ alignItems: 'flex-start', margin: 16 }}>
-                        <Icon name="bars" size={25} color='#1c5dc9'
+                    <TouchableOpacity
+                        style={{ alignItems: 'flex-start', margin: 16 }}
+                    >
+                        <Icon name="bars" size={24} color="#161924"
                             onPress={this.props.navigation.openDrawer} />
-                        <TextInput placeholder="Search Here" style={styles.search} underlineColorAndroid='transparent' placeholderTextColor = "#1c5dc987" />
-                        <Icon style={styles.searchIcon} name='search' size={22} color='#1c5dc9' />
+                        <View style={{ flexDirection: 'row' }}>
+                            {/* <Text style={styles.followers}>734 Followers </Text> */}
+                            <Icon name="users" size={16} color="rgba(255,255,255,0.8)" />
+                        </View>
+                        <TextInput placeholder="Search Here" style={styles.search} />
+                        <Icon style={styles.searchIcon} name='search' size={22} />
                     </TouchableOpacity>
                     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
                         <Text>{this.props.name} Home Screen </Text>
@@ -25,9 +31,6 @@ export default class HomeScreen extends Component {
     }
 }
 
-// activeBackgroundColor: '#1c5dc9',
-// activeTintColor: '#FFF',
-
 const styles = StyleSheet.create({
     container: {
         flex: 1
@@ -37,12 +40,11 @@ const styles = StyleSheet.create({
         marginTop: -33,
         marginLeft: 35,
         borderWidth: 1,
-        borderColor: "#1c5dc9",
+        borderColor: "#E8E8E8",
         borderRadius: 25,
         height: 40,
         paddingLeft: 45,
         paddingRight: 15,
-        
     },
     searchIcon: {
         marginTop: -33,

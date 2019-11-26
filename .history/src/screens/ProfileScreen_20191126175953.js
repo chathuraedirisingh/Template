@@ -12,7 +12,7 @@ export default class ProfileScreen extends Component {
             <View style={{ flex: 1 }}>
                 <SafeAreaView style={{ flex: 1 }}>
                     <TouchableOpacity style={{ alignItems: "flex-start", margin: 16 }} onPress={this.props.navigation.openDrawer}>
-                        <Icon name="bars" size={25} color="#1c5dc9" />
+                        <Icon name="bars" size={25} color="#161924" />
                     </TouchableOpacity>
                     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
                         <Text>Profile</Text>

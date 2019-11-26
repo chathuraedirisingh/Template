@@ -8,7 +8,6 @@ import ProfileScreen from './src/screens/ProfileScreen';
 import MessageScreen from './src/screens/MessageScreen';
 import SideBar from './src/components/SideBar';
 import Icon from 'react-native-vector-icons/dist/Feather';
-import ScanIDScreen from './src/screens/ScanIDScreen';
 
 const DrawerNavigator = createDrawerNavigator(
   {
@@ -19,32 +18,11 @@ const DrawerNavigator = createDrawerNavigator(
         drawerIcon: ({ tintColor }) => <Icon name="home" size={16} color={tintColor} />
       }
     },
-    Scan: {
-      screen: ScanIDScreen,
-      navigationOptions: {
-        title: 'Scan',
-        drawerIcon: ({ tintColor }) => <Icon name="camera" size={16} color={tintColor} />
-      }
-    },
-    DigitalApplication: {
+    Profile: {
       screen: ProfileScreen,
       navigationOptions: {
-        title: 'Digital Application',
-        drawerIcon: ({ tintColor }) => <Icon name="monitor" size={16} color={tintColor} />
-      }
-    },
-    DigitalApplication: {
-      screen: ProfileScreen,
-      navigationOptions: {
-        title: 'Digital Application',
-        drawerIcon: ({ tintColor }) => <Icon name="monitor" size={16} color={tintColor} />
-      }
-    },
-    CreditInquiry: {
-      screen: ProfileScreen,
-      navigationOptions: {
-        title: 'Credit Inquiry',
-        drawerIcon: ({ tintColor }) => <Icon name="tag" size={16} color={tintColor} />
+        title: 'Profile',
+        drawerIcon: ({ tintColor }) => <Icon name="user" size={16} color={tintColor} />
       }
     },
     Message: {
@@ -62,9 +40,9 @@ const DrawerNavigator = createDrawerNavigator(
 
     contentOptions: {
       activeBackgroundColor: '#1c5dc9',
-      activeTintColor: '#FFF',
+      activeTintColor: '#531158',
       itemsContainerStyle: {
-        marginTop: 10,
+        marginTop: 16,
         marginHorizontal: 8,
 
       },

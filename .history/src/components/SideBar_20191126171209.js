@@ -10,8 +10,8 @@ export default SideBar = props => (
             <Image source={require('../../assets/profile-pic.jpg')} style={styles.profile} />
             <Text style={styles.name}>Helen Stewart</Text>
             <View style={{ flexDirection: 'row' }}>
-                {/* <Text style={styles.followers}>734 Followers </Text> */}
-                {/* <Icon name="users" size={16} color="rgba(255,255,255,0.8)" /> */}
+                <Text style={styles.followers}>734 Followers </Text>
+                <Icon name="users" size={16} color="rgba(255,255,255,0.8)" />
             </View>
         </ImageBackground>
         <View style={styles.container}>

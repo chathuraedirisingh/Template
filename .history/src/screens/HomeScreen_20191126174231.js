@@ -10,14 +10,16 @@ export default class HomeScreen extends Component {
                 <StatusBar backgroundColor="white" barStyle="dark-content" />
                 <SafeAreaView
                     style={{ flex: 1 }}>
-                    <TouchableOpacity style={{ alignItems: 'flex-start', margin: 16 }}>
-                        <Icon name="bars" size={25} color='#1c5dc9'
+                    <TouchableOpacity
+                        style={{ alignItems:'flex-start', margin: 16 }}
+                    >
+                        <Icon name="bars" size={24} color="#161924"
                             onPress={this.props.navigation.openDrawer} />
-                        <TextInput placeholder="Search Here" style={styles.search} underlineColorAndroid='transparent' placeholderTextColor = "#1c5dc987" />
-                        <Icon style={styles.searchIcon} name='search' size={22} color='#1c5dc9' />
+                        <TextInput placeholder="Search Here" style={styles.search}/>
+                        <Icon name='search' size={24}/>
                     </TouchableOpacity>
                     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                        <Text>{this.props.name} Home Screen </Text>
+                        <Text>{this.props.name} Screen </Text>
                     </View>
                 </SafeAreaView>
             </View>
@@ -25,31 +27,23 @@ export default class HomeScreen extends Component {
     }
 }
 
-// activeBackgroundColor: '#1c5dc9',
-// activeTintColor: '#FFF',
-
 const styles = StyleSheet.create({
     container: {
         flex: 1
     },
     search: {
-        width: Dimensions.get('screen').width - 65,
-        marginTop: -33,
-        marginLeft: 35,
+        width:Dimensions.get('screen').width-65,
+        marginTop:-33,
+        marginLeft:35,
         borderWidth: 1,
-        borderColor: "#1c5dc9",
-        borderRadius: 25,
-        height: 40,
-        paddingLeft: 45,
-        paddingRight: 15,
-        
-    },
-    searchIcon: {
-        marginTop: -33,
-        marginLeft: 48,
+        borderColor: "#E8E8E8",
+        borderRadius:25,
+        height:40,
+        paddingLeft:45,
+        paddingRight:15,
     },
     name: {
-        width: Dimensions.get('screen').width - 50,
+        width: Dimensions.get('screen').width-50,
         color: '#FFF',
         fontSize: 20,
         fontWeight: "800",
