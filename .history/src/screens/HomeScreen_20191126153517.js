@@ -2,6 +2,25 @@ import React, { Component } from 'react'
 import { Text, View, StyleSheet, SafeAreaView, TouchableOpacity } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome'
 
+// export default class HomeScreen extends Component {
+
+//     static navigationOptions = {
+//         title: 'Home',
+//     };
+
+//     render() {
+
+//         const { navigate } = this.props.navigation;
+//         return (
+//             <Button
+//                 title="Go to Jane's profile"
+//                 onPress={() => navigate('Profile', { name: 'Jane' })}
+//             />
+//         )
+//     }
+// }
+
+
 export default class HomeScreen extends Component {
     render() {
         return (
@@ -10,10 +29,9 @@ export default class HomeScreen extends Component {
                 <SafeAreaView
                     style={{ flex: 1 }}>
                     <TouchableOpacity
-                        style={{ alignItems: "flex-end", margin: 16 }}
-                    >
-                        <Icon name="bars" size={24} color="#161924"
-                            onPress={this.props.navigation.openDrawer} />
+                        style={{ alignItems: "flex-start", margin: 16 }}
+                        onPress={this.props.navigation.openDrawer}>
+                        <Icon name="bars" size={24} color="#161924" />
                     </TouchableOpacity>
                     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
                         <Text>{this.props.name} Screen </Text>

@@ -5,7 +5,7 @@ import { createDrawerNavigator } from 'react-navigation-drawer';
 import HomeScreen from './src/screens/HomeScreen';
 import ProfileScreen from './src/screens/ProfileScreen';
 import MessageScreen from './src/screens/MessageScreen';
-import SideBar from './src/components/SideBar';
+import Sidebar from './src/components/Sidebar';
 
 
 const DrawerNavigator = createDrawerNavigator(
@@ -15,7 +15,7 @@ const DrawerNavigator = createDrawerNavigator(
     Message: { screen: MessageScreen }
   },
   {
-    contentComponent: props => <SideBar {...props} />
+    contentComponent: props => <Sidebar {...props} />
   }
 );
 

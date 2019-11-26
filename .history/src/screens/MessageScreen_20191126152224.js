@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import { Text, View, StyleSheet, SafeAreaView, TouchableOpacity } from 'react-native'
 import Icon from 'react-native-vector-icons/dist/FontAwesome'
 
-export default class ProfileScreen extends Component {
+export default class MessageScreen extends Component {
     static navigationOptions = {
-        title: 'Profile',
+        title: 'Message',
     };
     render() {
         const { navigate } = this.props.navigation;
@@ -15,7 +15,7 @@ export default class ProfileScreen extends Component {
                         <Icon name="bars" size={24} color="#161924" />
                     </TouchableOpacity>
                     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                        <Text>Profile</Text>
+                        <Text>Message</Text>
                     </View>
                 </SafeAreaView>
             </View>
