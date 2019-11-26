@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Dimensions } from 'react-native';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createDrawerNavigator } from 'react-navigation-drawer';
@@ -34,23 +33,7 @@ const DrawerNavigator = createDrawerNavigator(
     },
   },
   {
-    contentComponent: props => <SideBar {...props} />,
-    drawerWidth: Dimensions.get('window').width * 0.85,
-    hideStatusBar: true,
-
-    contentOptions: {
-      activeBackgroundColor: 'rgba(212,118,207,0.2)',
-      activeTintColor: '#531158',
-      itemsContainerStyle: {
-        marginTop: 16,
-        marginHorizontal: 8,
-
-      },
-      itemStyle: {
-        borderRadius: 4
-      }
-    }
-
+    contentComponent: props => <SideBar {...props} />
   }
 );
 

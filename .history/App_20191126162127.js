@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Dimensions } from 'react-native';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createDrawerNavigator } from 'react-navigation-drawer';
@@ -22,35 +21,19 @@ const DrawerNavigator = createDrawerNavigator(
       screen: ProfileScreen,
       navigationOptions: {
         title: 'Profile',
-        drawerIcon: ({ tintColor }) => <Icon name="user" size={16} color={tintColor} />
+        drawerIcon: ({ tintColor }) => <Icon name="home" size={16} color={tintColor} />
       }
     },
     Message: {
       screen: MessageScreen,
       navigationOptions: {
         title: 'Messages',
-        drawerIcon: ({ tintColor }) => <Icon name="message-square" size={16} color={tintColor} />
+        drawerIcon: ({ tintColor }) => <Icon name="home" size={16} color={tintColor} />
       }
     },
   },
   {
-    contentComponent: props => <SideBar {...props} />,
-    drawerWidth: Dimensions.get('window').width * 0.85,
-    hideStatusBar: true,
-
-    contentOptions: {
-      activeBackgroundColor: 'rgba(212,118,207,0.2)',
-      activeTintColor: '#531158',
-      itemsContainerStyle: {
-        marginTop: 16,
-        marginHorizontal: 8,
-
-      },
-      itemStyle: {
-        borderRadius: 4
-      }
-    }
-
+    contentComponent: props => <SideBar {...props} />
   }
 );
 
