@@ -4,22 +4,21 @@ import { createAppContainer } from 'react-navigation';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { createDrawerNavigator } from 'react-navigation-drawer';
 
-import HomePage from './Home';
-import BlankScreen from './BlankScreen';
-
 import AntIcon from 'react-native-vector-icons/AntDesign';
 import MatIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import FetIcon from 'react-native-vector-icons/Feather';
 import colors from '../styles/colors';
-import AlertScreen from './Tabs/AlertScreen';
-import MessageScreen from './Tabs/MessageScreen';
-import Settings from './Tabs/Settings';
 
+import HomeScreen from './HomeScreen';
+import BlankScreen from './BlankScreen';
+import AlertScreen from './Tabs/AlertScreen';
+import Settings from './Tabs/Settings';
+import MessageScreen from './Tabs/MessageScreen';
 
 const bottomTabNavigator = createBottomTabNavigator(
   {
     Home: {
-      screen: HomePage,
+      screen: HomeScreen,
       navigationOptions: {
         tabBarIcon: ({ tintColor }) => (
           <AntIcon name="home" size={27} color={tintColor} />

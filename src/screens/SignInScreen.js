@@ -20,7 +20,6 @@ import {
 class SignIn extends Component {
 
   constructor(props) {
-    console.log(props)
     super(props);
     this.state = {
       username   : '',
@@ -33,17 +32,16 @@ class SignIn extends Component {
   }
 
   handleButtonPress = () => {
-    // Alert.alert("Alert", "Button pressed "+viewId);
     this.setState({ loadingVisible: true });
     setTimeout(() => {
       const { username, password } = this.state;
-      console.log(username, password)
       if (username, password) {
         this.setState({ formValid: true, loadingVisible: false });
-        // this.props.navigation.navigate('Home')
-        // this.props.navigation.navigation('HomeScreen')
+        this.props.navigation.navigate('Home')
+      } else {
+          Alert.alert("Sign In", "Please enter your username & password.!");
       }
-    },1000)
+    },200)
   }
 
   handlePasswordChange = (password) => {
@@ -127,7 +125,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#f1faff',
   },
   Logo:{
-    width:Dimensions.get('window').width - 150,
+    width:Dimensions.get('window').width - 160,
     height:90,
     marginTop:100
   },
@@ -136,15 +134,15 @@ const styles = StyleSheet.create({
       backgroundColor: '#E0ECF2',
       borderRadius:3,
       borderBottomWidth: 1,
-      width:Dimensions.get('window').width - 150,
-      height:40,
+      width:Dimensions.get('window').width - 100,
+      height:50,
       marginBottom:20,
       flexDirection: 'row',
       alignItems:'center'
   },
   inputs: {
     borderColor: 'red',
-    height: 40,
+    height: 50,
     marginLeft: 16,
     flex: 1,
     // textAlign : 'center'
@@ -156,13 +154,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   buttonContainer: {
-    height:45,
+    height:55,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom:20,
     marginTop:80,
-    width:Dimensions.get('window').width - 150,
+    width:Dimensions.get('window').width - 100,
     borderRadius:5,
   },
   loginButton: {

@@ -3,18 +3,26 @@ import { Dimensions } from 'react-native';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createDrawerNavigator } from 'react-navigation-drawer';
-import HomeScreen from './src/screens/HomeScreen';
 import ProfileScreen from './src/screens/ProfileScreen';
-import MessageScreen from './src/screens/MessageScreen';
 import SideBar from './src/components/SideBar';
 // import Icon from 'react-native-vector-icons/dist/Feather';
 import Icon from 'react-native-vector-icons/FontAwesome'
 import ScanIDScreen from './src/screens/ScanIDScreen';
+import SignInScreen from './src/screens/SignInScreen';
+import TabNavigator from './src/screens/TabNavigator';
+import BlankScreen from './src/screens/BlankScreen';
 
 const DrawerNavigator = createDrawerNavigator(
   {
+    SignIn: {
+      screen: SignInScreen,
+      navigationOptions: {
+        title: 'Sign In',
+        drawerIcon: ({ tintColor }) => <Icon name="user" size={16} color={tintColor} />
+      }
+    },
     Home: {
-      screen: HomeScreen,
+      screen: TabNavigator,
       navigationOptions: {
         title: 'Home',
         drawerIcon: ({ tintColor }) => <Icon name="home" size={16} color={tintColor} />
@@ -28,38 +36,74 @@ const DrawerNavigator = createDrawerNavigator(
       }
     },
     DigitalApplication: {
-      screen: ProfileScreen,
+      screen: BlankScreen,
       navigationOptions: {
         title: 'Digital Application',
-        drawerIcon: ({ tintColor }) => <Icon name="monitor" size={16} color={tintColor} />
-      }
-    },
-    DigitalApplication: {
-      screen: ProfileScreen,
-      navigationOptions: {
-        title: 'Digital Application',
-        drawerIcon: ({ tintColor }) => <Icon name="monitor" size={16} color={tintColor} />
+        drawerIcon: ({ tintColor }) => <Icon name="tv" size={16} color={tintColor} />
       }
     },
     CreditInquiry: {
-      screen: ProfileScreen,
+      screen: BlankScreen,
       navigationOptions: {
         title: 'Credit Inquiry',
-        drawerIcon: ({ tintColor }) => <Icon name="tag" size={16} color={tintColor} />
+        drawerIcon: ({ tintColor }) => <Icon name="credit-card" size={16} color={tintColor} />
       }
     },
     PreQualificationage: {
-      screen: ProfileScreen,
+      screen: BlankScreen,
       navigationOptions: {
         title: 'Pre-Qualification',
-        drawerIcon: ({ tintColor }) => <Icon name="tag" size={16} color={tintColor} />
+        drawerIcon: ({ tintColor }) => <Icon name="clipboard" size={16} color={tintColor} />
       }
     },
     complianceSolutions: {
-      screen: ProfileScreen,
+      screen: BlankScreen,
       navigationOptions: {
         title:'Compliance Solutions',
+        drawerIcon: ({ tintColor }) => <Icon name="film" size={16} color={tintColor} />
+      }
+    },
+
+    SyntheticFraud: {
+      screen: BlankScreen,
+      navigationOptions: {
+        title:'Synthetic Fraud',
+        drawerIcon: ({ tintColor }) => <Icon name="snapchat-ghost" size={16} color={tintColor} />
+      }
+    },
+    Transactions: {
+      screen: BlankScreen,
+      navigationOptions: {
+        title:'Transactions',
+        drawerIcon: ({ tintColor }) => <Icon name="cc-mastercard" size={16} color={tintColor} />
+      }
+    },
+    ManageAlerts: {
+      screen: BlankScreen,
+      navigationOptions: {
+        title:'Manage Alerts',
+        drawerIcon: ({ tintColor }) => <Icon name="bell" size={16} color={tintColor} />
+      }
+    },
+    AccountSettings: {
+      screen: BlankScreen,
+      navigationOptions: {
+        title:'Account Settings',
+        drawerIcon: ({ tintColor }) => <Icon name="cog" size={16} color={tintColor} />
+      }
+    },
+    PushDataDTTR1: {
+      screen: BlankScreen,
+      navigationOptions: {
+        title:'Push Data to DT/TR1',
         drawerIcon: ({ tintColor }) => <Icon name="tag" size={16} color={tintColor} />
+      }
+    },
+    DMSSync: {
+      screen: BlankScreen,
+      navigationOptions: {
+        title:'DMS Sync',
+        drawerIcon: ({ tintColor }) => <Icon name="random" size={16} color={tintColor} />
       }
     },
   },
@@ -85,12 +129,10 @@ const DrawerNavigator = createDrawerNavigator(
 
 const App = createAppContainer(DrawerNavigator);
 
-export default App;
-
 // const App = () => {
 //   return (
-//       <SignInScreen/>
+//       <App/>
 //   );
 // };
 
-// export default App;
+export default App;
