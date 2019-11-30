@@ -7,7 +7,8 @@ import HomeScreen from './src/screens/HomeScreen';
 import ProfileScreen from './src/screens/ProfileScreen';
 import MessageScreen from './src/screens/MessageScreen';
 import SideBar from './src/components/SideBar';
-import Icon from 'react-native-vector-icons/dist/Feather';
+// import Icon from 'react-native-vector-icons/dist/Feather';
+import Icon from 'react-native-vector-icons/FontAwesome'
 import ScanIDScreen from './src/screens/ScanIDScreen';
 
 const DrawerNavigator = createDrawerNavigator(
@@ -22,7 +23,7 @@ const DrawerNavigator = createDrawerNavigator(
     Scan: {
       screen: ScanIDScreen,
       navigationOptions: {
-        title: 'Scan',
+        title: 'ID Scan',
         drawerIcon: ({ tintColor }) => <Icon name="camera" size={16} color={tintColor} />
       }
     },
@@ -47,35 +48,49 @@ const DrawerNavigator = createDrawerNavigator(
         drawerIcon: ({ tintColor }) => <Icon name="tag" size={16} color={tintColor} />
       }
     },
-    Message: {
-      screen: MessageScreen,
+    PreQualificationage: {
+      screen: ProfileScreen,
       navigationOptions: {
-        title: 'Messages',
-        drawerIcon: ({ tintColor }) => <Icon name="message-square" size={16} color={tintColor} />
+        title: 'Pre-Qualification',
+        drawerIcon: ({ tintColor }) => <Icon name="tag" size={16} color={tintColor} />
+      }
+    },
+    complianceSolutions: {
+      screen: ProfileScreen,
+      navigationOptions: {
+        title:'Compliance Solutions',
+        drawerIcon: ({ tintColor }) => <Icon name="tag" size={16} color={tintColor} />
       }
     },
   },
   {
     contentComponent: props => <SideBar {...props} />,
-    drawerWidth: Dimensions.get('window').width * 0.85,
+    drawerWidth: Dimensions.get('window').width * 0.80,
+    drawerBackgroundColor:'#fefefe',
+    drawerType:'front',
     hideStatusBar: true,
-
     contentOptions: {
-      activeBackgroundColor: '#1c5dc9',
-      activeTintColor: '#FFF',
+      activeBackgroundColor: '#3da3f5',
+      activeTintColor: '#f4f4f4',
       itemsContainerStyle: {
-        marginTop: 10,
-        marginHorizontal: 8,
-
+        marginTop: 0,
+        marginHorizontal: 0,
       },
       itemStyle: {
-        borderRadius: 4
+        borderRadius: 0
       }
     }
-
   }
 );
 
 const App = createAppContainer(DrawerNavigator);
 
 export default App;
+
+// const App = () => {
+//   return (
+//       <SignInScreen/>
+//   );
+// };
+
+// export default App;

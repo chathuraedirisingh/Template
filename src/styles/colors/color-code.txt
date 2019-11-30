@@ -1,0 +1,6 @@
+dark-blue : #277BC7
+light-blue : #3ea3f4
+sky-bg-white : 3e9f3fd
+main-blue : #2f96f3
+gray-text : #a2a2a2
+input-bg : #edf6ff

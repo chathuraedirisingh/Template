@@ -92,8 +92,6 @@ export default class ScanIDScreen extends Component {
     };
 }
 
-
-
 const { width: winWidth, height: winHeight } = Dimensions.get('window');
 
 

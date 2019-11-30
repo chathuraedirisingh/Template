@@ -3,10 +3,9 @@ import { View, Text, StyleSheet, ScrollView, ImageBackground, Image } from 'reac
 import { DrawerNavigatorItems } from 'react-navigation-drawer'
 import Icon from 'react-native-vector-icons/dist/FontAwesome'
 
-
 export default SideBar = props => (
     <ScrollView>
-        <ImageBackground source={require('../../assets/background_blue.png')} style={{ width: undefined, padding: 16, paddingTop: 48 }}>
+        <ImageBackground source={require('../../assets/glamorous-copy-c.jpg')} style={{ width: undefined, padding: 16, paddingTop: 48 }}>
             <Image source={require('../../assets/profile-pic.jpg')} style={styles.profile} />
             <Text style={styles.name}>Helen Stewart</Text>
             <View style={{ flexDirection: 'row' }}>
@@ -32,9 +31,9 @@ const styles = StyleSheet.create({
         borderColor: "#FFF",
     },
     name: {
-        color: '#FFF',
+        color: '#31393C',
         fontSize: 20,
-        fontWeight: "800",
+        fontWeight: "bold",
         marginVertical: 8,
     },
     followers: {
