@@ -11,6 +11,9 @@ import ScanIDScreen from './src/screens/ScanIDScreen';
 import SignInScreen from './src/screens/SignInScreen';
 import TabNavigator from './src/screens/TabNavigator';
 import BlankScreen from './src/screens/BlankScreen';
+import ShowDetailsScreen from './src/screens/ShowDetailsScreen';
+import DealerListScreen from './src/screens/DealerListScreen';
+import ViewDealerScreen from './src/screens/ViewDealerScreen';
 
 const DrawerNavigator = createDrawerNavigator(
   {
@@ -32,6 +35,13 @@ const DrawerNavigator = createDrawerNavigator(
       screen: ScanIDScreen,
       navigationOptions: {
         title: 'ID Scan',
+        drawerIcon: ({ tintColor }) => <Icon name="camera" size={16} color={tintColor} />
+      }
+    },
+    DealerList:{
+      screen: DealerListScreen,
+      navigationOptions: {
+        title: 'Customer List',
         drawerIcon: ({ tintColor }) => <Icon name="camera" size={16} color={tintColor} />
       }
     },
@@ -106,6 +116,19 @@ const DrawerNavigator = createDrawerNavigator(
         drawerIcon: ({ tintColor }) => <Icon name="random" size={16} color={tintColor} />
       }
     },
+
+    Show:{
+      screen: ShowDetailsScreen,
+      navigationOptions: {
+        drawerLabel: ()=>null,
+      }
+    },
+    ViewDealer:{
+      screen: ViewDealerScreen,
+      navigationOptions: {
+        drawerLabel: ()=>null,
+      }
+    }
   },
   {
     contentComponent: props => <SideBar {...props} />,

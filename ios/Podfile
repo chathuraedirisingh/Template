@@ -35,6 +35,8 @@ target 'core' do
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
 
+  pod 'blinkid-react-native', :path => '../node_modules/blinkid-react-native'
+
   target 'coreTests' do
     inherit! :search_paths
     # Pods for testing
