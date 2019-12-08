@@ -7,7 +7,7 @@ export default SideBar = props => (
     <ScrollView>
         <ImageBackground source={require('../../assets/glamorous-copy-c.jpg')} style={{ width: undefined, padding: 16, paddingTop: 48 }}>
             <Image source={require('../../assets/profile-pic.jpg')} style={styles.profile} />
-            <Text style={styles.name}>John Doe</Text>
+            <Text style={styles.name}>Joy Jennifer Doe</Text>
             <View style={{ flexDirection: 'row' }}>
                 {/* <Text style={styles.followers}>734 Followers </Text> */}
                 {/* <Icon name="users" size={16} color="rgba(255,255,255,0.8)" /> */}

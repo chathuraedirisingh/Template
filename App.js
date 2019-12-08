@@ -14,6 +14,7 @@ import BlankScreen from './src/screens/BlankScreen';
 import ShowDetailsScreen from './src/screens/ShowDetailsScreen';
 import DealerListScreen from './src/screens/DealerListScreen';
 import ViewDealerScreen from './src/screens/ViewDealerScreen';
+import HardPullScreen from './src/screens/HardPullScreen';
 
 const DrawerNavigator = createDrawerNavigator(
   {
@@ -22,6 +23,13 @@ const DrawerNavigator = createDrawerNavigator(
       navigationOptions: {
         title: 'Sign In',
         drawerIcon: ({ tintColor }) => <Icon name="user" size={16} color={tintColor} />
+      }
+    },
+    HardPull: {
+      screen: HardPullScreen,
+      navigationOptions: {
+        title: 'Hard Pull',
+        drawerIcon: ({ tintColor }) => <Icon name="check-circle-o" size={16} color={tintColor} />
       }
     },
     Home: {

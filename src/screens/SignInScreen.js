@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { Input } from 'react-native-elements';
+
 import {
   View,
   Text,
@@ -62,7 +64,6 @@ class SignIn extends Component {
     const { validUsername } = this.state;
     this.setState({ username });
     // Alert.alert("Alert", "Button username "+username);
-    console.log("Alert", "Button password "+username);
     if (!validUsername) {
       if (emailCheckRegex.test(username)) {
         this.setState({ validUsername: true });
@@ -78,24 +79,38 @@ class SignIn extends Component {
       // <KeyboardAvoidingView behavior="padding">
       <View style={styles.container}>
         <View style={styles.Logo}>
-        <ImageBackground source={require('../../assets/image.png')} 
+        {/* <ImageBackground source={require('../../assets/image.png')} 
           style={{ width: '100%',padding: 12, paddingTop: 100 , marginTop:-50}}>
-        </ImageBackground>
+        </ImageBackground> */}
+        <Image source = {require('../../assets/image.png')} 
+          style={{ width: 180,height:100, padding: 1, paddingTop:0, marginTop:-50 , alignSelf:'center'}}/>
+      
         </View>
         <View style={styles.inputContainer}> 
-          <TextInput style={styles.inputs}
+          {/* <TextInput style={styles.inputs}
               placeholder="Username"
               keyboardType="email-address"
-              // defaultValue="test@gmail.com"
               underlineColorAndroid='transparent'
               customStyle={{ marginBottom: 30 }}
               onChangeText={this.handleEmailChange}
               // showCheckmark={this.state.validEmail}
               autoFocus
-              />
+              /> */}
+              <Input
+                  autoFocus
+                  onChangeText={this.handleEmailChange}
+                  placeholder='Username'
+                  leftIcon={
+                    <Icon
+                      name='user'
+                      size={24}
+                      color='black'
+                    />
+                  }
+                />
         </View>
         <View style={styles.inputContainer}>
-          <TextInput style={styles.inputs}
+          {/* <TextInput style={styles.inputs}
               placeholder="Password"
               secureTextEntry={true}
               underlineColorAndroid='transparent'
@@ -103,7 +118,20 @@ class SignIn extends Component {
               customStyle={{ marginBottom: 30 }}
               onChangeText={this.handlePasswordChange}
               // onChangeText={(username) => this.setState({email})}/>
-              />
+              /> */}
+              <Input
+                  autoFocus
+                  onChangeText={this.handlePasswordChange}
+                  secureTextEntry={true}
+                  placeholder='Password'
+                  leftIcon={
+                    <Icon
+                      name='lock'
+                      size={24}
+                      color='black'
+                    />
+                  }
+                />
         </View>
         <TouchableHighlight style={[styles.buttonContainer, styles.loginButton]} 
           onPress={() => this.handleButtonPress()} underlayColor='#3286C9'>
@@ -122,7 +150,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     // backgroundColor: '#2f96f3',
-    backgroundColor: '#f1faff',
+    backgroundColor: '#F0F1F3',
   },
   Logo:{
     width:Dimensions.get('window').width - 160,
@@ -130,10 +158,10 @@ const styles = StyleSheet.create({
     marginTop:100
   },
   inputContainer: {
-      borderBottomColor: '#C6C9C9',
-      backgroundColor: '#E0ECF2',
-      borderRadius:3,
-      borderBottomWidth: 1,
+      // borderBottomColor: '#C6C9C9',
+      // backgroundColor: '#E0ECF2',
+      // borderRadius:3,
+      // borderBottomWidth: 1,
       width:Dimensions.get('window').width - 100,
       height:50,
       marginBottom:20,
