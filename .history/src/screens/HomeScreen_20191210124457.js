@@ -26,7 +26,7 @@ import {
   SkypeIndicator,
   UIActivityIndicator,
   WaveIndicator,
-} from 'react-native-indicators';
+} from 'react-native-indicators'
 
 import AsyncStorage from '@react-native-community/async-storage';
 
@@ -40,10 +40,17 @@ const licenseKey = Platform.select({
 });
 
 export default class HomeScreen extends Component {
+  // constructor(props) {
+  //     super(props);
+  //     this.state = {
+  //       name : '',
+  //     }
+  //   }
+
   constructor(props) {
     super(props);
     this.state = {
-      username: '',
+      username:'',
       status: true,
       scaning: false,
       showImageDocument: false,
@@ -61,20 +68,15 @@ export default class HomeScreen extends Component {
   //     this.props.navigation.navigate('Scan');
   // }
 
-  // componentDidMount(){
-  //   AsyncStorage.getItem("@username").then((data)=>{
-  //     this.state.username=data;
-  //     // console.log(this.state)
-  //   })
-  // }
-
-  componentDidMount() {
-    AsyncStorage.getItem('@username').then(data => {
-      if (data) {
-        this.setState({username: data});
-        console.log(this.state);
-      }
-    });
+  componentDidMount(){
+    AsyncStorage.getItem("@username").then((data)=>{
+      console.log(data)
+      this.state.username=data;
+      console.log(this.state)
+    })
+    // console.log()
+    // this.state.username=value;
+    console.log(this.state)
   }
 
   async scan() {
@@ -157,7 +159,6 @@ export default class HomeScreen extends Component {
   }
 
   render() {
-    // console.log(this.state)
     return (
       <View style={{flex: 1}}>
         <StatusBar backgroundColor="#2678c2" barStyle="light-content" />
@@ -194,10 +195,7 @@ export default class HomeScreen extends Component {
               style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
               <View style={styles.homeContent}>
                 <View>
-                  <Text style={styles.greet}>
-                    {' '}
-                    Good Morning {this.state.username}
-                  </Text>
+                  <Text style={styles.greet}> Good Morning {this.state.username}</Text>
                 </View>
                 <View style={styles.scanIdSection}>
                   <ImageBackground

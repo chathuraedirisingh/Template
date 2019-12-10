@@ -11,7 +11,8 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "@react-native-community/async-storage": "^1.6.3",
+    "@react-native-community/async-storage": "^1.6.3
+    ",
     "blinkid-react-native": "^5.0.0",
     "formik": "^2.0.6",
     "moment": "^2.24.0",

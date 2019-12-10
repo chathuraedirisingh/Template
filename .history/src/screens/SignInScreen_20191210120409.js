@@ -25,7 +25,7 @@ class SignIn extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username : '',
+      username   : '',
       password: '',
       formValid:false,
       validUsername: false,

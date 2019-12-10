@@ -11,8 +11,8 @@ import {DrawerNavigatorItems} from 'react-navigation-drawer';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import AsyncStorage from '@react-native-community/async-storage';
 
-var username;
 function getUsername() {
+  var username = '';
   AsyncStorage.getItem('@username').then(data => {
     console.log(data);
     if (data) {
@@ -32,7 +32,7 @@ export default SideBar = props => (
         style={styles.profile}
       />
       {getUsername() ? (
-        <Text style={styles.name}>{username}</Text>
+        <Text style={styles.name}>{getUsername()}</Text>
       ) : (
         <Text>NoUse</Text>
       )}

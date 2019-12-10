@@ -25,7 +25,7 @@ class SignIn extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username : '',
+      username   : '',
       password: '',
       formValid:false,
       validUsername: false,
@@ -52,12 +52,20 @@ class SignIn extends Component {
       const { username, password } = this.state;
       if (username, password) {
         this.setState({ formValid: true, loadingVisible: false });
-        AsyncStorage.setItem("@username", this.state.username)
+        this.storeData
         this.props.navigation.navigate('Home')
       } else {
           Alert.alert("Sign In", "Please enter your username & password.!");
       }
     },200)
+  }
+
+  storeData = async () => {
+    try {
+      await AsyncStorage.setItem('@username', this.state.username)
+    } catch (e) {
+      // saving error
+    }
   }
 
   handlePasswordChange = (password) => {
