@@ -1,19 +1,14 @@
 import React from 'react';
-import { Text, View } from 'react-native';
 import { createAppContainer } from 'react-navigation';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
-import { createDrawerNavigator } from 'react-navigation-drawer';
-
 import AntIcon from 'react-native-vector-icons/AntDesign';
 import MatIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import FetIcon from 'react-native-vector-icons/Feather';
-import colors from '../styles/colors';
-
-import HomeScreen from './HomeScreen';
-import BlankScreen from './BlankScreen';
-import AlertScreen from './Tabs/AlertScreen';
-import Settings from './Tabs/Settings';
-import MessageScreen from './Tabs/MessageScreen';
+import HomeScreen from '../HomeScreen';
+import AlertScreen from './AlertScreen';
+import Settings from './Settings';
+import MessageScreen from './MessageScreen';
+import colors from '../../styles/colors'
 
 const bottomTabNavigator = createBottomTabNavigator(
   {
@@ -21,7 +16,7 @@ const bottomTabNavigator = createBottomTabNavigator(
       screen: HomeScreen,
       navigationOptions: {
         tabBarIcon: ({ tintColor }) => (
-          <AntIcon name="home" size={27} color={tintColor} />
+          <AntIcon name="home" size={27} color={colors.HIGHT_BLUE} />
         )
       }
     },
@@ -29,7 +24,7 @@ const bottomTabNavigator = createBottomTabNavigator(
       screen: AlertScreen,
       navigationOptions: {
         tabBarIcon: ({ tintColor }) => (
-          <FetIcon name="bell" size={27} color={tintColor} />
+          <FetIcon name="bell" size={27} color={colors.HIGHT_BLUE} />
         )
       }
     },
@@ -37,7 +32,7 @@ const bottomTabNavigator = createBottomTabNavigator(
       screen: MessageScreen,
       navigationOptions: {
         tabBarIcon: ({ tintColor }) => (
-          <MatIcon name="message-outline" size={27} color={tintColor} />
+          <MatIcon name="message-outline" size={27} color={colors.HIGHT_BLUE} />
         )
       }
     },
@@ -45,7 +40,7 @@ const bottomTabNavigator = createBottomTabNavigator(
       screen: Settings,
       navigationOptions: {
         tabBarIcon: ({ tintColor }) => (
-          <FetIcon name="settings" size={27} color={tintColor} />
+          <FetIcon name="settings" size={27} color={colors.HIGHT_BLUE} />
         )
       }
     },
@@ -54,7 +49,7 @@ const bottomTabNavigator = createBottomTabNavigator(
     initialRouteName: 'Home',
     tabBarOptions: {
       showLabel: false,
-      activeTintColor: colors.background
+      activeTintColor: 'red'
     },
     navigationOptions: ({ navigation }) => {
       const { routeName } = navigation.state.routes[navigation.state.index];

@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Moment from 'moment';
 import {
   Dimensions,
   Text,
@@ -19,37 +20,46 @@ import {
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Avatar, Badge } from 'react-native-elements'
 import { CollapsItem } from '../components/CollapsItem'
+import colors from '../styles/colors'
 
 export default class HardPullScreen extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
+        this.state = {
+            data: [],
+        };
     }
 
     render(){
+        const {navigation} = this.props;
+        this.state.data = this.props.navigation.state.params.data;
         return (
             <View style={styles.container}>
-            <StatusBar backgroundColor="#2678c2" barStyle="light-content" />
+            <StatusBar backgroundColor={colors.BG_STATUS_BAR} barStyle="light-content" />
                 <View style={{flex: 1}}>
                 <SafeAreaView>
-                    <View style={{alignItems: 'flex-start', margin: 10 , flexDirection:'row'}}>
+                    <View style={{alignItems: 'flex-start', margin: 5 , flexDirection:'row'}}>
                         <Icon
+                            style={{marginLeft:5}}
                             name="bars"
                             size={25}
-                            color="#5F9CCE"
+                            color={colors.HIGHT_BLUE}
                             onPress={this.props.navigation.openDrawer}
                         />
                         <View style={{flex: 1}}>
                             <View style={styles.addressContent}>
-                                <Text style={styles.addressTitle}>Joy Jennifer Doe</Text>
-                                <Text style={styles.addressData}>03/31/92 |XXX-XX-7890</Text>
-                                <Text style={styles.addressData}>2865 101st street, Portland {"\n"} OR, 97011</Text>
+                           
+                                <Text style={styles.addressTitle}>{`${this.state.data.name.first} ${this.state.data.name.last}`}</Text>
+                                <Text style={styles.addressData}> {Moment(this.state.data.dob.date).format('DD/MM/YYYY')} |{' '}
+              {this.state.data.phone}</Text>
+                                <Text style={styles.addressData}>{`${this.state.data.location.street.number} ${this.state.data.location.street.name}street,`} {"\n"}</Text>
                             </View>
                         </View>
                     </View>
                     <View style={styles.statusContainer}>
                         <View style={styles.statusBlock}>
-                            <Image source = {require('../../assets/image_equifax.png')} style={{ width: 120, height: 30}} />
+                            <Image source = {require('../../assets/image_equifax.png')} style={{ width: 120, height: 30,marginTop:-5}}   resizeMode = 'contain'/>
                         </View>
                         <View style={styles.statusBlock}>
                             <View style={{alignItems:'flex-start',flexDirection:'row'}}>
@@ -88,7 +98,7 @@ export default class HardPullScreen extends Component {
                 </View>
                 {/* accordian panels */}
                 {/* #EFF0F1 */}
-                <View style={{ flex:1,backgroundColor:'#DADBDC'}}>
+                <View style={{ flex:2,backgroundColor:'#DADBDC'}}>
                 <View style={styles.cardAccordionPanel}></View>
                     <CollapsItem />
                </View>
@@ -136,14 +146,13 @@ const styles = StyleSheet.create({
         borderRadius: 2
     },
     addressTitle: {
-        fontSize: 22,
+        fontSize: 18,
         fontWeight: '800',
         color: '#0E9DDD',
         paddingBottom: 5,
-        paddingTop: 0
     },
     addressData: {
-        fontSize: 14,
+        fontSize: 12,
         fontWeight: 'normal',
         color: '#0E9DDD',
         textAlign: 'center'
@@ -161,15 +170,14 @@ const styles = StyleSheet.create({
     },
     statusBlock: {
         alignItems: 'center',
-        padding: 5,
+        padding: 0,
         borderColor: '#ccc',
-        // borderWidth: 1,
         width: Dimensions.get('screen').width - 30,
-        height: 60
+        height: 20
     },
     statusBlockBadges: {
         padding: 5,
-        marginTop: 10,
+        marginTop: 25,
         borderColor: '#ccc',
        justifyContent:'center',
        alignItems:'center',

@@ -1,6 +1,8 @@
 import React, {Component}  from 'react';
 import PropTypes from 'prop-types';
 import List from './enum'
+import colors from '../styles/colors'
+
 import {
     Dimensions,
     Text,
@@ -16,7 +18,6 @@ import {
   } from 'react-native';
   import Icon from 'react-native-vector-icons/FontAwesome';
   import { Avatar, Badge } from 'react-native-elements'
-  import { OrderedList ,UnorderedList, ListItem  } from 'react-native-lists-library';
 
 import {
       AutoLoan,
@@ -29,7 +30,6 @@ const propTypes = {
     item: PropTypes.object
 };
 
-
 class CollapsItem extends Component {
 
     constructor(props) {
@@ -41,7 +41,6 @@ class CollapsItem extends Component {
 
     expand = (expand) => {
         this.setState((prevState, prevProps) => ({
-            // isSelected: !prevState.isSelected
             chooseExpandView: (expand === prevState.chooseExpandView) ? List.DEFAULT : expand
         }));
     };
@@ -64,7 +63,7 @@ class CollapsItem extends Component {
                             <TouchableWithoutFeedback  onPress={() => this.expand(List.AUTO_LOAN)} >
                                 <View>
                                     <View style={styles.titleContainer}>
-                                        <Icon name="car" size={25} color="#31393C" style={styles.titleIcon}/>
+                                        <Icon name="car" size={24} color={colors.GREY_BLUE} style={styles.titleIcon}/>
                                         <Text style={styles.title}>Auto Loan Information</Text>
                                         <Image source = { chooseExpandView === List.AUTO_LOAN ? UP_ARROW_ICON :  DOWN_ARROW_ICON} style={styles.image} />
                                     </View>
@@ -92,7 +91,7 @@ class CollapsItem extends Component {
                             <TouchableWithoutFeedback  onPress={() => this.expand(List.COMPLIANCE)} >
                                 <View>
                                     <View style={styles.titleContainer}>
-                                        <Icon name="bell" size={25} color="#31393C" style={styles.titleIcon}/>
+                                        <Icon name="bell"  size={24} color={colors.GREY_BLUE} style={styles.titleIcon}/>
                                         <Text style={styles.title}>Red Flag Compliance</Text>
                                         <Image source = { chooseExpandView === List.COMPLIANCE ? UP_ARROW_ICON :  DOWN_ARROW_ICON} style={styles.image} />
                                     </View>
@@ -128,7 +127,7 @@ class CollapsItem extends Component {
                             <TouchableWithoutFeedback  onPress={() => this.expand(List.FRAUD_CHECK)} >
                                 <View>
                                     <View style={styles.titleContainer}>
-                                        <Icon name="user-secret" size={25} color="#31393C" style={styles.titleIcon}/>
+                                        <Icon name="user-secret"  size={24} color={colors.GREY_BLUE} style={styles.titleIcon}/>
                                         <Text style={styles.title}>Fraud Checks</Text>
                                         <Image source = { chooseExpandView === List.FRAUD_CHECK ? UP_ARROW_ICON :  DOWN_ARROW_ICON} style={styles.image} />
                                     </View>
@@ -164,7 +163,7 @@ class CollapsItem extends Component {
                             <TouchableWithoutFeedback  onPress={() => this.expand(List.BORROWER_INTELLIGENCE)} >
                                 <View>
                                     <View style={styles.titleContainer}>
-                                        <Icon name="lightbulb-o" size={25} color="#31393C" style={styles.titleIcon}/>
+                                        <Icon name="lightbulb-o" size={25}  size={24} color={colors.GREY_BLUE} style={styles.titleIcon}/>
                                         <Text style={styles.title}>Borrower Intelligence</Text>
                                         <Image source = { chooseExpandView === List.BORROWER_INTELLIGENCE ? UP_ARROW_ICON :  DOWN_ARROW_ICON} style={styles.image} />
                                     </View>
@@ -201,7 +200,7 @@ class CollapsItem extends Component {
                             <TouchableWithoutFeedback  onPress={() => this.expand(List.MILITARY_ACT)} >
                                 <View>
                                     <View style={styles.titleContainer}>
-                                        <Icon name="lock" size={25} color="#31393C" style={styles.titleIcon}/>
+                                        <Icon name="lock" size={25}  size={24} color={colors.GREY_BLUE} style={styles.titleIcon}/>
                                         <Text style={styles.title}>Military Lending Act</Text>
                                         <Image source = { chooseExpandView === List.MILITARY_ACT ? UP_ARROW_ICON :  DOWN_ARROW_ICON} style={styles.image} />
                                     </View>
@@ -230,7 +229,7 @@ class CollapsItem extends Component {
                             <TouchableWithoutFeedback  onPress={() => this.expand(List.ACCOUNT_SUMMARY)} >
                                 <View>
                                     <View style={styles.titleContainer}>
-                                        <Icon name="pie-chart" size={25} color="#31393C" style={styles.titleIcon}/>
+                                        <Icon name="pie-chart" size={25}  size={24} color={colors.GREY_BLUE} style={styles.titleIcon}/>
                                         <Text style={styles.title}>Account Summary</Text>
                                         <Image source = { chooseExpandView === List.ACCOUNT_SUMMARY ? UP_ARROW_ICON :  DOWN_ARROW_ICON} style={styles.image} />
                                     </View>
@@ -267,7 +266,7 @@ class CollapsItem extends Component {
                             <TouchableWithoutFeedback  onPress={() => this.expand(List.CREDIT_USAGE)} >
                                 <View>
                                     <View style={styles.titleContainer}>
-                                        <Icon name="tachometer" size={25} color="#31393C" style={styles.titleIcon}/>
+                                        <Icon name="tachometer" size={25}  size={24} color={colors.GREY_BLUE} style={styles.titleIcon}/>
                                         <Text style={styles.title}>Overall Credit Usage</Text>
                                         <Image source = { chooseExpandView === List.CREDIT_USAGE ? UP_ARROW_ICON :  DOWN_ARROW_ICON} style={styles.image} />
                                     </View>
@@ -303,7 +302,7 @@ class CollapsItem extends Component {
                             <TouchableWithoutFeedback  onPress={() => this.expand(List.DEBT_SUMMARY)} >
                                 <View>
                                     <View style={styles.titleContainer}>
-                                        <Icon name="tag" size={25} color="#31393C" style={styles.titleIcon}/>
+                                        <Icon name="tag" size={25}  size={24} color={colors.GREY_BLUE} style={styles.titleIcon}/>
                                         <Text style={styles.title}>Debt Summary</Text>
                                         <Image source = { chooseExpandView === List.DEBT_SUMMARY ? UP_ARROW_ICON :  DOWN_ARROW_ICON} style={styles.image} />
                                     </View>
@@ -339,7 +338,7 @@ class CollapsItem extends Component {
                             <TouchableWithoutFeedback  onPress={() => this.expand(List.ESTATE_LOAN)} >
                                 <View>
                                     <View style={styles.titleContainer}>
-                                        <Icon name="home" size={25} color="#31393C" style={styles.titleIcon}/>
+                                        <Icon name="home" size={25}  size={24} color={colors.GREY_BLUE} style={styles.titleIcon}/>
                                         <Text style={styles.title}>Real Estate Loan</Text>
                                         <Image source = { chooseExpandView === List.ESTATE_LOAN ? UP_ARROW_ICON :  DOWN_ARROW_ICON} style={styles.image} />
                                     </View>
@@ -376,7 +375,7 @@ class CollapsItem extends Component {
                             <TouchableWithoutFeedback  onPress={() => this.expand(List.STUDENT_LOAN)} >
                                 <View>
                                     <View style={styles.titleContainer}>
-                                        <Icon name="home" size={25} color="#31393C" style={styles.titleIcon}/>
+                                        <Icon name="home" size={25}  size={24} color={colors.GREY_BLUE} style={styles.titleIcon}/>
                                         <Text style={styles.title}>Student Loan</Text>
                                         <Image source = { chooseExpandView === List.STUDENT_LOAN ? UP_ARROW_ICON :  DOWN_ARROW_ICON} style={styles.image} />
                                     </View>
@@ -413,7 +412,7 @@ class CollapsItem extends Component {
                             <TouchableWithoutFeedback  onPress={() => this.expand(List.CREDIT_CL)} >
                                 <View>
                                     <View style={styles.titleContainer}>
-                                        <Icon name="credit-card-alt" size={25} color="#31393C" style={styles.titleIcon}/>
+                                        <Icon name="credit-card-alt" size={25}  size={24} color={colors.GREY_BLUE} style={styles.titleIcon}/>
                                         <Text style={styles.title}>Credit Card and Credit Line</Text>
                                         <Image source = { chooseExpandView === List.CREDIT_CL ? UP_ARROW_ICON :  DOWN_ARROW_ICON} style={styles.image} />
                                     </View>
@@ -485,7 +484,7 @@ const styles = StyleSheet.create({
     },
     titleIcon :{
         padding:5,
-        marginRight:5
+        marginRight:5,
     },
     description: {
         // flex:1,

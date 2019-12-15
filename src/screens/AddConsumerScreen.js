@@ -6,13 +6,27 @@ import {
   StatusBar,
   SafeAreaView,
   ScrollView,
+  TouchableHighlight,
   Picker,
   TouchableOpacity,
+  ActivityIndicator
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import MatIcon from 'react-native-vector-icons/MaterialIcons';
 import {ProgressSteps, ProgressStep} from 'react-native-progress-steps';
 import {Input} from 'react-native-elements';
+import colors from '../styles/colors'
+
 export default class AddConsumerScreen extends Component {
+
+  state = {
+    submitted : false
+  }
+
+  componentDidMount() {
+    console.log('Inint...........')
+  }
+
   static navigationOptions = {
     header: null,
   };
@@ -37,9 +51,20 @@ export default class AddConsumerScreen extends Component {
     console.log('called previous step');
   };
 
-  onSubmitSteps = () => {
-    console.log('called on submit step.');
-  };
+  toggleSubmition =(status) => {
+    this.setState((prevState) => {
+      return {submitted: status}});
+    }
+
+    onSubmitSteps = () => {
+      console.log('called on submit step.');
+      this.toggleSubmition(true)
+      setTimeout(() => {
+        this.toggleSubmition(false)
+        this.props.navigation.navigate('ViewDealer')
+      }, 3000)
+    };
+
   render() {
     const progressStepsStyle = {
       activeStepIconBorderColor: '#B0E0E6',
@@ -58,7 +83,7 @@ export default class AddConsumerScreen extends Component {
 
     return (
       <View style={styles.container}>
-        <StatusBar backgroundColor="#2678c2" barStyle="light-content" />
+        <StatusBar backgroundColor={colors.BG_STATUS_BAR} barStyle="light-content" />
         <View style={{flex: 1}}>
           <SafeAreaView>
             <View
@@ -66,13 +91,28 @@ export default class AddConsumerScreen extends Component {
                 alignItems: 'flex-start',
                 margin: 10,
                 flexDirection: 'row',
+                justifyContent:'space-between'
               }}>
               <Icon
                 name="bars"
                 size={25}
-                color="#5F9CCE"
+                color={colors.HIGHT_BLUE}
                 onPress={this.props.navigation.openDrawer}
               />
+              <TouchableHighlight>
+                <View style={{
+                  alignItems: 'flex-start',
+                  flexDirection: 'row',
+                  justifyContent:'flex-start'}}>
+                  <MatIcon
+                    name="keyboard-return"
+                    size={24}
+                    color={colors.HIGHT_BLUE}
+                    onPress={() => this.props.navigation.navigate('ViewDealer')}/>
+                  {/* <Text style={{color:'#ddd',fontSize:12}}>Return</Text> */}
+                </View>
+              </TouchableHighlight>
+            
             </View>
           </SafeAreaView>
           <View style={{flex: 12, marginTop: -30}}>
@@ -278,6 +318,7 @@ export default class AddConsumerScreen extends Component {
                 label=""
                 onNext={this.onNextStep}
                 onPrevious={this.onPrevStep}
+                onSubmit={this.onSubmitSteps}
                 scrollViewProps={this.defaultScrollViewProps}>
                 <View style={{flex: 1, flexDirection: 'column', margin: 10}}>
                   <Text
@@ -430,7 +471,12 @@ export default class AddConsumerScreen extends Component {
                       </Text>
                     </View>
                   </ScrollView>
+              
                 </View>
+                {
+                  this.state.submitted ? <View><ActivityIndicator size='large' color={colors.SKY_BLUE}/></View> : null
+                }
+               
               </ProgressStep>
             </ProgressSteps>
           </View>

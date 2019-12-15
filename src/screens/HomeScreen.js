@@ -6,15 +6,24 @@ import {
   StyleSheet,
   SafeAreaView,
   TouchableOpacity,
+  Keyboard,
+  ScrollView,
+  Button,
+  TextInput,
+  Image,
   StatusBar,
   ImageBackground,
   TouchableHighlight,
+  TouchableWithoutFeedback,
   Alert,
   KeyboardAvoidingView,
 } from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scrollview';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import {TextInput} from 'react-native-gesture-handler';
+import AntIcon from 'react-native-vector-icons/AntDesign';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
+import colors from '../styles/colors'
+import {HEADER_HEIGHT} from '../styles/size'
 
 import {
   BallIndicator,
@@ -25,12 +34,12 @@ import {
   PulseIndicator,
   SkypeIndicator,
   UIActivityIndicator,
-  WaveIndicator,
+  WaveIndicator
 } from 'react-native-indicators';
 
 import AsyncStorage from '@react-native-community/async-storage';
-
 import * as BlinkIDReactNative from 'blinkid-react-native';
+
 
 const licenseKey = Platform.select({
   ios:
@@ -156,170 +165,174 @@ export default class HomeScreen extends Component {
     return localState;
   }
 
+  handleSearchChange = (text) => {
+    setTimeout(() => {
+      console.log(text)
+    },2000);
+  }
+
   render() {
-    // console.log(this.state)
     return (
-      <View style={{flex: 1}}>
-        <StatusBar backgroundColor="#2678c2" barStyle="light-content" />
-
-        <KeyboardAvoidingView
-          style={styles.container}
-          behavior="padding"
-          enabled>
-          <SafeAreaView style={{flex: 1}}>
-            <View style={styles.searchHead}>
-              <TouchableOpacity style={{alignItems: 'flex-start', margin: 20}}>
-                <Icon
-                  name="bars"
-                  size={25}
-                  color="#f9f9f9"
-                  onPress={this.props.navigation.openDrawer}
-                />
-                <TextInput
-                  placeholder="Search Here"
-                  style={styles.search}
-                  underlineColorAndroid="transparent"
-                  placeholderTextColor="#d5e6ee"
-                />
-                <Icon
-                  style={styles.searchIcon}
-                  name="search"
-                  size={22}
-                  color="#f9f9f9"
-                />
-              </TouchableOpacity>
-            </View>
-
-            <View
-              style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-              <View style={styles.homeContent}>
-                <View>
-                  <Text style={styles.greet}>
-                    {' '}
-                    Good Morning {this.state.username}
-                  </Text>
-                </View>
-                <View style={styles.scanIdSection}>
-                  <ImageBackground
-                    source={require('../../assets/ID-Card.png')}
-                    style={styles.idImage}></ImageBackground>
-                </View>
-
-                <View>
-                  <TouchableHighlight
-                    style={[styles.buttonContainer, styles.scanButton]}
-                    onPress={this.scan.bind(this)}
-                    underlayColor="#3286C9">
-                    <Text style={styles.scanText}>Scan ID</Text>
-                  </TouchableHighlight>
-                </View>
+      <>
+        <View style={{flex:1}}>
+            <StatusBar backgroundColor={colors.BG_STATUS_BAR} barStyle="light-content" />
+            <SafeAreaView style={{flex: 0}}>
+              <View style={styles.headContainer}>
+                   <View>
+                      <Icon
+                        style={styles.drawerIcon}
+                        name="bars"
+                        size={25}
+                        color="#f9f9f9"
+                        onPress={this.props.navigation.openDrawer}
+                      />
+                   </View>
+                   {/* <View style={{flex:1}}> */}
+                    <TextInput
+                        onChangeText={this.handleSearchChange}
+                        placeholder='Search Here'
+                        placeholderTextColor='rgba(41, 128, 185,0.8)'
+                        returnKeyType='next'
+                        style={styles.input}
+                        autoCapitalize='none'
+                        autoCorrect={false}
+                        // onSubmitEditing = {() => this.passwordInput.focus()}
+                        />
+                   {/* </View> */}
+                   <TouchableOpacity>
+                      <Icon
+                          style={styles.searchIcon}
+                          name="search"
+                          size={22}
+                          color={colors.WHITE}
+                        />
+                   </TouchableOpacity>
               </View>
-            </View>
-          </SafeAreaView>
-        </KeyboardAvoidingView>
-      </View>
+            </SafeAreaView>
+           
+          <KeyboardAvoidingView style={styles.container}  behavior={Platform.OS === "ios" ? "padding" : null}>
+           <View style={styles.main}>
+              <View style={{flex:1,flexDirection:'row',marginTop:10,marginBottom:10}}>
+                <Text style={styles.welcomeText}>Welcome</Text>
+                <Text style={styles.usernameText}> {this.state.username}</Text>
+              </View>
+              <View style={[styles.scanDividion]}>
+                    <View style={styles.outerCircle}>
+                      <View style={styles.innerCircle}>
+                        <AntIcon name="scan1" size={50} color={colors.MD_GRAY} style={{flex:1,marginTop:15,alignSelf:'center'}}/>
+                      </View>
+                    </View>
+              </View>
+              <TouchableHighlight style={[styles.buttonContainer,{flex:0}]}
+                  onPress={this.scan.bind(this)}
+                  underlayColor="#3286C9">
+                  <Text style={styles.buttonText}>SCAN ID</Text>
+              </TouchableHighlight>
+           </View>
+          </KeyboardAvoidingView>
+        </View>
+      </>
     );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
+    flex: 2,
+  },
+  main: {
     flex: 1,
-  },
-  idImage: {
-    width: Dimensions.get('screen').width - 50,
-    height: 180,
-    marginTop: 50,
-    borderRadius: 0,
-    borderWidth: 0,
-    shadowColor: '#000',
-    // shadowOffset:{
-    // width: 0,
-    // height: 9,
-    // },
-    // shadowOpacity: 0.50,
-    // shadowRadius: 12.35,
-    // elevation: 19,
-  },
-  buttonContainer: {
-    height: 45,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: -100,
-    marginTop: 80,
-    width: Dimensions.get('screen').width - 50,
-    borderRadius: 5,
-  },
-  scanButton: {
-    backgroundColor: '#3da3f5',
-    height: 60,
-    borderRadius: 5,
-    paddingTop: 5,
-    paddingBottom: 5,
-    paddingLeft: 50,
-    paddingRight: 50,
-    shadowColor: 'rgba(0, 0, 0, 0.1)',
-    shadowOpacity: 0.8,
-    elevation: 6,
-    shadowRadius: 15,
-    shadowOffset: {
-      width: 1,
-      height: 13,
-    },
-  },
-  scanText: {
-    color: '#f4f4f4',
-    fontSize: 18,
-  },
-  homeContent: {
-    display: 'flex',
     flexDirection: 'column',
-    marginTop: Dimensions.get('screen').height - 100 * 8,
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    margin: 20
   },
-  greet: {
-    fontSize: 24,
-    color: '#aec2cd',
-    textAlign: 'center',
-    marginTop: -100,
-    paddingBottom: 10,
+  welcomeText: {
+    fontSize: 26,
+    color: '#959595',
+    fontWeight: '600',
+    alignSelf: 'flex-start'
   },
-  scanIdSection: {
-    width: Dimensions.get('screen').width - 50,
+  usernameText: {
+    fontSize: 26,
+    color: colors.HIGHT_BLUE,
+    fontWeight: '600',
+    alignSelf: 'flex-start'
   },
-  searchHead: {
-    paddingTop: 5,
-    backgroundColor: '#2f96f3',
-    height: Dimensions.get('screen').height - 800,
-
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 6,
-    },
-    shadowOpacity: 0.37,
-    shadowRadius: 7.49,
-    elevation: 10,
+  headContainer: {
+    backgroundColor: colors.BG_MAIN_COVER,
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    height: 60,
   },
-  search: {
-    width: Dimensions.get('screen').width - 65,
-    marginTop: -30,
-    marginLeft: 35,
-    borderWidth: 5,
-    borderColor: '#2f96f3',
-    borderRadius: 0,
+  input: {
     height: 40,
-    paddingLeft: 30,
-    paddingRight: 80,
-    color: '#fff',
-    fontSize: 16,
-    fontWeight: '800',
+    width: '100%',
     textAlign: 'center',
+    color: colors.WHITE,
+    paddingHorizontal: 10,
+    flex: 1,
+    backgroundColor: 'rgba(255,255,255,0.2)',
+    marginTop: 10,
+    marginBottom: 10,
+    margin: 10
+  },
+  scanDividion: {
+    flex: 5,
+    borderColor: '#ccc',
+    borderWidth: 1,
+    borderStyle: 'dashed',
+    width: '100%',
+    backgroundColor:colors.MD_GRAY,
+
+    borderStyle: 'dotted',
+    borderRadius: 8,
+    marginBottom: 10,
+    marginTop: 5,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+
+  outerCircle: {
+    backgroundColor: colors.MD_GRAY,
+    width: 90,
+    height: 90,
+    borderRadius: 100 / 2,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  innerCircle: {
+    backgroundColor: '#fff',
+    width: 80,
+    height: 80,
+    borderRadius: 80 / 2,
+  },
+
+  buttonContainer: {
+    flex: 0,
+    backgroundColor: colors.BG_LIGHT_BUTTON,
+    paddingVertical: 20,
+    width: '100%',
+    height: 60,
+    borderRadius: 3,
+    marginTop: 20
+    // marginTop: 10,
+    // borderRadius: 3,
+  },
+  buttonText: {
+    // fontSize:16,
+    textAlign: 'center',
+    color: '#FFF',
+    fontWeight: '700'
   },
   searchIcon: {
-    marginTop: -33,
-    marginLeft: 90,
+    marginRight: 10,
     alignSelf: 'flex-end',
+  },
+  drawerIcon: {
+    marginLeft: 10,
+    alignSelf: 'center',
   },
   name: {
     width: Dimensions.get('screen').width - 50,
@@ -327,9 +340,5 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: '800',
     marginVertical: 8,
-  },
-  followers: {
-    color: 'rgba(255,255,255,0.8)',
-    fontSize: 13,
-  },
+  }
 });

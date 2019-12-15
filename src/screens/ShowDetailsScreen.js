@@ -32,7 +32,7 @@ export default class ShowDetailsScreen extends Component {
 
     return (
       <View style={{flex: 1}}>
-        <StatusBar backgroundColor="#2678c2" barStyle="light-content" />
+       <StatusBar backgroundColor={colors.BG_STATUS_BAR} barStyle="light-content" />
 
         <KeyboardAvoidingView
           style={styles.container}

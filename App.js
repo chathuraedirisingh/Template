@@ -1,38 +1,31 @@
 import React, { Component } from 'react'
-import { Dimensions } from 'react-native';
-import { createAppContainer } from 'react-navigation';
+import { Dimensions} from 'react-native';
+import { createAppContainer ,createSwitchNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createDrawerNavigator } from 'react-navigation-drawer';
-import ProfileScreen from './src/screens/ProfileScreen';
 import SideBar from './src/components/SideBar';
-// import Icon from 'react-native-vector-icons/dist/Feather';
 import Icon from 'react-native-vector-icons/FontAwesome'
 import ScanIDScreen from './src/screens/ScanIDScreen';
-import SignInScreen from './src/screens/SignInScreen';
-import TabNavigator from './src/screens/TabNavigator';
+import TabNavigator from './src/screens/Tabs/TabNavigator';
 import BlankScreen from './src/screens/BlankScreen';
 import ShowDetailsScreen from './src/screens/ShowDetailsScreen';
 import DealerListScreen from './src/screens/DealerListScreen';
 import ViewDealerScreen from './src/screens/ViewDealerScreen';
-import HardPullScreen from './src/screens/HardPullScreen';
 import AddConsumerScreen from './src/screens/AddConsumerScreen';
+import HardPullScreen from './src/screens/HardPullScreen';
+import LoginScreen from './src/screens/LoginScreen';
+
+
+
+
+export default class App extends Component {
+  render() {
+    return(<AppContainer/>)
+  }
+}
 
 const DrawerNavigator = createDrawerNavigator(
   {
-    SignIn: {
-      screen: SignInScreen,
-      navigationOptions: {
-        title: 'Sign In',
-        drawerIcon: ({ tintColor }) => <Icon name="user" size={16} color={tintColor} />
-      }
-    },
-    HardPull: {
-      screen: HardPullScreen,
-      navigationOptions: {
-        title: 'Hard Pull',
-        drawerIcon: ({ tintColor }) => <Icon name="check-circle-o" size={16} color={tintColor} />
-      }
-    },
     Home: {
       screen: TabNavigator,
       navigationOptions: {
@@ -47,18 +40,12 @@ const DrawerNavigator = createDrawerNavigator(
         drawerIcon: ({ tintColor }) => <Icon name="camera" size={16} color={tintColor} />
       }
     },
-    AddConsumer:{
-      screen: AddConsumerScreen,
-      navigationOptions: {
-        title: 'Add Consumer',
-        drawerIcon: ({ tintColor }) => <Icon name="camera" size={16} color={tintColor} />
-      }
-    },
+  
     DealerList:{
       screen: DealerListScreen,
       navigationOptions: {
         title: 'Customer List',
-        drawerIcon: ({ tintColor }) => <Icon name="camera" size={16} color={tintColor} />
+        drawerIcon: ({ tintColor }) => <Icon name="users" size={16} color={tintColor} />
       }
     },
     DigitalApplication: {
@@ -132,7 +119,6 @@ const DrawerNavigator = createDrawerNavigator(
         drawerIcon: ({ tintColor }) => <Icon name="random" size={16} color={tintColor} />
       }
     },
-
     Show:{
       screen: ShowDetailsScreen,
       navigationOptions: {
@@ -144,6 +130,19 @@ const DrawerNavigator = createDrawerNavigator(
       navigationOptions: {
         drawerLabel: ()=>null,
       }
+    },
+    // TODO change the navigation method TBD
+    HardPull: {
+      screen: HardPullScreen,
+      navigationOptions: {
+        drawerLabel: ()=>null,
+      }
+    },
+    AddConsumer:{
+      screen: AddConsumerScreen,
+      navigationOptions: {
+        drawerLabel: ()=>null,
+      }
     }
   },
   {
@@ -152,6 +151,17 @@ const DrawerNavigator = createDrawerNavigator(
     drawerBackgroundColor:'#fefefe',
     drawerType:'front',
     hideStatusBar: true,
+    // drawerOpenRoute: 'DrawerOpen',
+    // drawerToggleRoute: 'DrawerToggle',
+    // drawerCloseRoute: 'DrawerClose',
+    style:{
+      drawer: {
+        width:Dimensions.get("screen").width * 0.80,
+        shadowColor: '#000000',
+        shadowOpacity: 0.8,
+        shadowRadius: 3},
+        main: {paddingLeft: 1}
+    },
     contentOptions: {
       activeBackgroundColor: '#3da3f5',
       activeTintColor: '#f4f4f4',
@@ -166,12 +176,16 @@ const DrawerNavigator = createDrawerNavigator(
   }
 );
 
-const App = createAppContainer(DrawerNavigator);
+// const StackNavigator = createStackNavigator({
+//   DealerList: {screen: DealerListScreen},
+//   // HardPull: {screen:HardPullScreen}
+// });
 
-// const App = () => {
-//   return (
-//       <App/>
-//   );
-// };
+const AppNavigator  = createSwitchNavigator(
+  {
+    // Login: {screen:LoginScreen},
+    Home: {screen:DrawerNavigator},
+  }
+);
 
-export default App;
+const AppContainer = createAppContainer(AppNavigator)

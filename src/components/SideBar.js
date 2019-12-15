@@ -25,8 +25,8 @@ function getUsername() {
 export default SideBar = props => (
   <ScrollView>
     <ImageBackground
-      source={require('../../assets/glamorous-copy-c.jpg')}
-      style={{width: undefined, padding: 16, paddingTop: 48}}>
+      source={require('../../assets/glamorous-copy-1.jpg')}
+      style={{width: undefined, padding: 16, paddingTop: 40}}>
       <Image
         source={require('../../assets/profile-pic.jpg')}
         style={styles.profile}
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
   name: {
     color: '#31393C',
     fontSize: 20,
-    fontWeight: 'bold',
+    fontWeight: '700',
     marginVertical: 8,
   },
   followers: {

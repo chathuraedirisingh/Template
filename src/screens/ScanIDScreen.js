@@ -3,6 +3,7 @@ import {
   Platform,
   Button,
   TouchableHighlight,
+  StatusBar,
   Text,
   View,
   StyleSheet,
@@ -21,6 +22,7 @@ import {
 } from 'react-native-responsive-screen';
 
 import * as BlinkIDReactNative from 'blinkid-react-native';
+import colors from '../styles/colors'
 
 const licenseKey = Platform.select({
   ios:
@@ -213,9 +215,10 @@ export default class ScanIDScreen extends Component {
 
     return (
       <View style={{flex: 1}}>
+        <StatusBar backgroundColor={colors.BG_STATUS_BAR} barStyle="light-content" />
         <SafeAreaView style={{flex: 1}}>
           {/* remove */}
-          <View style={styles.searchHead}>
+          {/* <View style={styles.searchHead}>
             <TouchableOpacity style={{alignItems: 'flex-start', margin: 20}}>
               <Icon
                 name="bars"
@@ -236,7 +239,40 @@ export default class ScanIDScreen extends Component {
                 color="#f9f9f9"
               />
             </TouchableOpacity>
-          </View>
+          </View> */}
+
+            <View style={styles.headContainer}>
+                   <View>
+                      <Icon
+                        style={styles.drawerIcon}
+                        name="bars"
+                        size={25}
+                        color="#f9f9f9"
+                        onPress={this.props.navigation.openDrawer}
+                      />
+                   </View>
+                   {/* <View style={{flex:1}}> */}
+                    <TextInput
+                        onChangeText={this.handleSearchChange}
+                        placeholder='Search Here'
+                        placeholderTextColor='rgba(41, 128, 185,0.8)'
+                        returnKeyType='next'
+                        style={styles.input}
+                        autoCapitalize='none'
+                        autoCorrect={false}
+                        // onSubmitEditing = {() => this.passwordInput.focus()}
+                        />
+                   {/* </View> */}
+                   <TouchableOpacity>
+                      <Icon
+                          style={styles.searchIcon}
+                          name="search"
+                          size={22}
+                          color={colors.WHITE}
+                        />
+                   </TouchableOpacity>
+            </View>
+
 
           <View
             style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
@@ -333,33 +369,77 @@ export default class ScanIDScreen extends Component {
 const {width: winWidth, height: winHeight} = Dimensions.get('window');
 
 const styles = StyleSheet.create({
-  buttonContainer: {
-    height: 50,
+  headContainer: {
+    backgroundColor: colors.BG_MAIN_COVER,
     flexDirection: 'row',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     alignItems: 'center',
-    marginBottom: 20,
-    marginTop: 30,
-    width: Dimensions.get('screen').width - 50,
-    borderRadius: 5,
+    height: 60,
   },
-  scanButton: {
-    backgroundColor: '#3da3f5',
-    height: 70,
+  input: {
+    height: 40,
+    width: '100%',
+    textAlign: 'center',
+    color: colors.WHITE,
+    paddingHorizontal: 10,
+    flex: 1,
+    backgroundColor: 'rgba(255,255,255,0.2)',
+    marginTop: 10,
+    marginBottom: 10,
+    margin: 10
+  },
+  buttonContainer: {
+    flex: 0,
+    backgroundColor: colors.BG_LIGHT_BUTTON,
+    paddingVertical: 20,
+    width: '100%',
+    height: 60,
     borderRadius: 3,
-    paddingTop: 1,
-    paddingBottom: 5,
-    paddingLeft: 50,
-    paddingRight: 50,
-    shadowColor: 'rgba(0, 0, 0, 0.1)',
-    shadowOpacity: 0.8,
-    elevation: 6,
-    shadowRadius: 15,
-    shadowOffset: {
-      width: 1,
-      height: 13,
-    },
+    marginTop: 20
+    // marginTop: 10,
+    // borderRadius: 3,
   },
+  buttonText: {
+    // fontSize:16,
+    textAlign: 'center',
+    color: '#FFF',
+    fontWeight: '700'
+  },
+  searchIcon: {
+    marginRight: 10,
+    alignSelf: 'flex-end',
+  },
+  drawerIcon: {
+    marginLeft: 10,
+    alignSelf: 'center',
+  },
+  // buttonContainer: {
+  //   height: 50,
+  //   flexDirection: 'row',
+  //   justifyContent: 'center',
+  //   alignItems: 'center',
+  //   marginBottom: 20,
+  //   marginTop: 30,
+  //   width: Dimensions.get('screen').width - 50,
+  //   borderRadius: 5,
+  // },
+  // scanButton: {
+  //   backgroundColor: '#3da3f5',
+  //   height: 70,
+  //   borderRadius: 3,
+  //   paddingTop: 1,
+  //   paddingBottom: 5,
+  //   paddingLeft: 50,
+  //   paddingRight: 50,
+  //   shadowColor: 'rgba(0, 0, 0, 0.1)',
+  //   shadowOpacity: 0.8,
+  //   elevation: 6,
+  //   shadowRadius: 15,
+  //   shadowOffset: {
+  //     width: 1,
+  //     height: 13,
+  //   },
+  // },
   homeContent: {
     display: 'flex',
     flexDirection: 'column',
@@ -389,49 +469,49 @@ const styles = StyleSheet.create({
     marginTop: 0,
     paddingBottom: 2,
   },
-  searchHead: {
-    paddingTop: 5,
-    backgroundColor: '#2f96f3',
-    height: Dimensions.get('screen').height - 800,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 6,
-    },
-    shadowOpacity: 0.37,
-    shadowRadius: 7.49,
-    elevation: 10,
-  },
-  search: {
-    width: Dimensions.get('screen').width - 65,
-    marginTop: -30,
-    marginLeft: 35,
-    borderWidth: 5,
-    borderColor: '#2f96f3',
-    borderRadius: 0,
-    height: 40,
-    paddingLeft: 30,
-    paddingRight: 80,
-    color: '#fff',
-    fontSize: 16,
-    fontWeight: '800',
-    textAlign: 'center',
-  },
-  searchIcon: {
-    marginTop: -33,
-    marginLeft: 90,
-    alignSelf: 'flex-end',
-  },
-  headerText: {
-    width: Dimensions.get('screen').width,
-    marginTop: -3,
-    marginLeft: 145,
-    height: 40,
-    fontSize: 22,
-    fontWeight: 'bold',
-    // paddingLeft: 45,
-    // paddingRight: 15,
-  },
+  // searchHead: {
+  //   paddingTop: 5,
+  //   backgroundColor: '#2f96f3',
+  //   height: Dimensions.get('screen').height - 800,
+  //   shadowColor: '#000',
+  //   shadowOffset: {
+  //     width: 0,
+  //     height: 6,
+  //   },
+  //   shadowOpacity: 0.37,
+  //   shadowRadius: 7.49,
+  //   elevation: 10,
+  // },
+  // search: {
+  //   width: Dimensions.get('screen').width - 65,
+  //   marginTop: -30,
+  //   marginLeft: 35,
+  //   borderWidth: 5,
+  //   borderColor: '#2f96f3',
+  //   borderRadius: 0,
+  //   height: 40,
+  //   paddingLeft: 30,
+  //   paddingRight: 80,
+  //   color: '#fff',
+  //   fontSize: 16,
+  //   fontWeight: '800',
+  //   textAlign: 'center',
+  // },
+  // searchIcon: {
+  //   marginTop: -33,
+  //   marginLeft: 90,
+  //   alignSelf: 'flex-end',
+  // },
+  // headerText: {
+  //   width: Dimensions.get('screen').width,
+  //   marginTop: -3,
+  //   marginLeft: 145,
+  //   height: 40,
+  //   fontSize: 22,
+  //   fontWeight: 'bold',
+  //   // paddingLeft: 45,
+  //   // paddingRight: 15,
+  // },
   preview: {
     // height: winHeight,
     // width: winWidth,
