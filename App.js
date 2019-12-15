@@ -14,8 +14,7 @@ import ViewDealerScreen from './src/screens/ViewDealerScreen';
 import AddConsumerScreen from './src/screens/AddConsumerScreen';
 import HardPullScreen from './src/screens/HardPullScreen';
 import LoginScreen from './src/screens/LoginScreen';
-
-
+import colors from './src/styles/colors';
 
 
 export default class App extends Component {
@@ -148,7 +147,7 @@ const DrawerNavigator = createDrawerNavigator(
   {
     contentComponent: props => <SideBar {...props} />,
     drawerWidth: Dimensions.get('window').width * 0.80,
-    drawerBackgroundColor:'#fefefe',
+    drawerBackgroundColor:colors.WHITE,
     drawerType:'front',
     hideStatusBar: true,
     // drawerOpenRoute: 'DrawerOpen',
@@ -156,21 +155,28 @@ const DrawerNavigator = createDrawerNavigator(
     // drawerCloseRoute: 'DrawerClose',
     style:{
       drawer: {
-        width:Dimensions.get("screen").width * 0.80,
+        width:Dimensions.get("screen").width * 0.60,
         shadowColor: '#000000',
         shadowOpacity: 0.8,
         shadowRadius: 3},
         main: {paddingLeft: 1}
     },
     contentOptions: {
-      activeBackgroundColor: '#3da3f5',
-      activeTintColor: '#f4f4f4',
+      inactiveTintColor: '#2d98da',
+      activeBackgroundColor: colors.BG_MAIN_COVER,
+      activeTintColor:colors.WHITE,
+      labelStyle: {
+        color:'#a5b1c2',
+        fontSize:16
+      },
       itemsContainerStyle: {
         marginTop: 0,
-        marginHorizontal: 0,
+        marginHorizontal: 0
       },
       itemStyle: {
-        borderRadius: 0
+        borderRadius: 0,
+        // borderBottomColor: '#f4f4f4',
+        // borderWidth: 0.5
       }
     }
   }
@@ -183,7 +189,7 @@ const DrawerNavigator = createDrawerNavigator(
 
 const AppNavigator  = createSwitchNavigator(
   {
-    // Login: {screen:LoginScreen},
+    Login: {screen:LoginScreen},
     Home: {screen:DrawerNavigator},
   }
 );
