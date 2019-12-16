@@ -69,8 +69,6 @@ export default class ViewDealerScreen extends Component {
       } else {
         alert("Invalid Mobile number (hint: don't add + ) ");
       }
-    } else {
-      alert('Hint: 9477xxxxxxx');
     }
   }
 
@@ -104,7 +102,7 @@ export default class ViewDealerScreen extends Component {
         console.log('response object:', responseJson);
         if (responseJson.success === true) {
           this.setState({sending: false});
-          alert('Verification link sent successfully, firebase state verify updated');
+          alert('Verification link sent successfully');
           this.update_dealer_verified();
         } else {
           this.setState({sending: false});

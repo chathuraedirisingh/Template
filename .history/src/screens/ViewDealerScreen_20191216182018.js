@@ -16,7 +16,6 @@ import {Avatar, Input} from 'react-native-elements';
 import Moment from 'moment';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import colors from '../styles/colors';
-import firebase from '../../configs/firebase';
 
 const DismissKeyboard = ({children}) => (
   <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
@@ -34,9 +33,13 @@ export default class ViewDealerScreen extends Component {
     };
     this.state = {
       phone: '',
-      entity: '',
+      entity:'',
       orientation: isPortrait() ? 'portrait' : 'landscape',
       data: [],
+      message: {
+        to: '',
+        body: '',
+      },
       submitting: false,
       error: false,
       sending: false,
@@ -55,7 +58,7 @@ export default class ViewDealerScreen extends Component {
     };
   };
 
-  _handleVerify() {
+  _handleVerify(event) {
     let phone = this.state.phone;
     let is_valid = /^\d+$/.test(phone);
 
@@ -69,8 +72,6 @@ export default class ViewDealerScreen extends Component {
       } else {
         alert("Invalid Mobile number (hint: don't add + ) ");
       }
-    } else {
-      alert('Hint: 9477xxxxxxx');
     }
   }
 
@@ -104,7 +105,7 @@ export default class ViewDealerScreen extends Component {
         console.log('response object:', responseJson);
         if (responseJson.success === true) {
           this.setState({sending: false});
-          alert('Verification link sent successfully, firebase state verify updated');
+          alert('Verification link sent successfully');
           this.update_dealer_verified();
         } else {
           this.setState({sending: false});
@@ -116,35 +117,15 @@ export default class ViewDealerScreen extends Component {
       });
   }
 
-  update_dealer_verified() {
-    firebase
-      .database()
-      .ref('Dealers/' + this.state.entity)
-      .update({verified: 'true'})
-      .then(data => {
-        console.log(data);
-        // let newState = {
-        //   authenticated: true,
-        // };
-        // this.setState(newState);
-        // alert('dealer verify successfully');
-      })
-      .catch(error => {
-        console.log(error);
-        //error callback
-        // alert('dealer adding failed');
-        // let newState = {
-        //   authenticated: false,
-        // };
-        // this.setState(newState);
-      });
+  update_dealer_verified(){
+
   }
 
   render() {
     const {navigation} = this.props;
     const user = navigation.getParam('user', {});
-    this.state.entity = user.entity;
-    console.log(this.state);
+    this.setState({entity:user.entity});
+    console.log(user);
 
     if (this.state.sending) {
       return (
